@@ -1,4 +1,6 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
+//importing axios for api fetching
+import axios from "axios";
 
 import DefaultHoc from '../hoc/DefaultHoc';
 //components
@@ -10,6 +12,17 @@ const HomePage = () => {
   const [recommendedMovie,setRecommendedMovie]=useState([]);
   const [premiumMovie,setPremiumMovie]=useState([]);
   const [onlineStreamEvent,setOnlineStreamEvents]=useState([]);
+
+  useEffect(() => {
+    const reqTopRated = async () => {
+      const getTopRated = await axios.get(
+        "https://api.themoviedb.org/3/movie/top_rated?api_key=b479eccb202a0c67a6a9ce40a7809c75"
+      );
+      setRecommendedMovie(getTopRated.data.results);
+    };
+
+    reqTopRated();
+  }, []);
   return (
     <>
     <HeroCrousel />
@@ -20,7 +33,7 @@ const HomePage = () => {
     <div className='container mx-auto px-4 md:px-12 my-8'>
       <PosterSlider
         title="Recommended Movies"
-        subject="List of Recommended Movies"
+        subtitle="List of Recommended Movies"
         posters={recommendedMovie}
         isDark={false}
        />

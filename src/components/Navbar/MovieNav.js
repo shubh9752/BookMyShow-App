@@ -7,4 +7,4 @@ const MovieNav = () => {
   )
 }
 
-export default MovieNav
+export default MovieNav;

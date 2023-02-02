@@ -47,7 +47,11 @@ const HeroCrousel = () => {
       speed:500,
       slideToScroll:1,
       nextArrow:<NextArrows />,
-      prevArrow:<PrevArrows /> ,
+      prevArrow:<PrevArrows />,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 4000,
+      cssEase: "linear",
 
     };
     const setting={
@@ -67,8 +71,8 @@ const HeroCrousel = () => {
         <div className='lg:hidden'>
           <HeroSlider {...setting} >
             {
-                images.map((each)=><div className='w-full h-56 md:h-80 py-4'>
-                    <img src={`https://image.tmdb.org/t/p/original${each.backdrop_path}`} alt='Banner' className='w-full h-full rounded-md object-cover ' />
+                images.map((every,index)=><div className='w-full h-56 md:h-80 py-4' key={index}>
+                    <img src={`https://image.tmdb.org/t/p/original${every.backdrop_path}`} alt='Banner' className='w-full h-full rounded-md object-cover ' />
                 </div>)
             }
           </HeroSlider>
@@ -76,8 +80,8 @@ const HeroCrousel = () => {
         <div className='hidden lg:block'>
         <HeroSlider {...settingLarge}>
             {
-                images.map((each)=><div className='w-full h-96 px-2 py-4'>
-                    <img src={`https://image.tmdb.org/t/p/original${each.backdrop_path}`} alt='Banner' className='w-full h-full rounded-md object-cover ' />
+                images.map((every,index)=><div className='w-full h-96 px-2 py-4' key={index}>
+                    <img src={`https://image.tmdb.org/t/p/original${every.backdrop_path}`} alt='Banner' className='w-full h-full rounded-md object-cover ' />
                 </div>)
             }
           </HeroSlider>
