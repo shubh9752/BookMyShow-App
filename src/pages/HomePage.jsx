@@ -14,14 +14,34 @@ const HomePage = () => {
   const [onlineStreamEvent,setOnlineStreamEvents]=useState([]);
 
   useEffect(() => {
-    const reqTopRated = async () => {
-      const getTopRated = await axios.get(
-        "https://api.themoviedb.org/3/movie/top_rated?api_key=b479eccb202a0c67a6a9ce40a7809c75"
+    const reqPopular = async () => {
+      const getPopular = await axios.get(
+        "/movie/popular"
       );
-      setRecommendedMovie(getTopRated.data.results);
+      setRecommendedMovie(getPopular.data.results);
     };
 
-    reqTopRated();
+    reqPopular();
+  }, []);
+  useEffect(() => {
+    const reqPremium = async () => {
+      const getPremium = await axios.get(
+        "/movie/top_rated"
+      );
+      setPremiumMovie(getPremium.data.results);
+    };
+
+    reqPremium();
+  }, []);
+  useEffect(() => {
+    const reqUpcoming = async () => {
+      const getUpcoming = await axios.get(
+        "/movie/upcoming"
+      );
+      setOnlineStreamEvents(getUpcoming.data.results);
+    };
+
+    reqUpcoming();
   }, []);
   return (
     <>
